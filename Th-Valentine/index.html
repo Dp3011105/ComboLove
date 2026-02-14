@@ -1,0 +1,931 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+J+Guides:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.3/lottie_svg.min.js"></script>
+  <title>Letter & Universe 💌</title>
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💌</text></svg>">
+</head>
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+  font-family: "Playwrite GB J Guides", cursive;
+  font-weight: 400;
+  font-style: italic;
+}
+
+:root {
+  --primary: #fff;
+  --bg-envelope-color: #f5edd1;
+  --envelope-tab: #ecdeb8;
+  --envelope-cover: #e6cfa7;
+  --shadow-color: rgba(0, 0, 0, 0.2);
+  --txt-color: #444;
+  --heart-color: rgb(252, 8, 231);
+}
+
+.one {
+  background-color: #cccccc;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background: var(--bg-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.background {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+}
+
+.one {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  position: absolute;
+  place-items: center;
+}
+
+.container>.envelope-wrapper {
+  background: var(--bg-envelope-color);
+  box-shadow: 0 0 40px var(--shadow-color);
+  animation: floating 3s ease-in-out infinite;
+  position: relative;
+  z-index: 5;
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-20px) rotate(1deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.envelope-wrapper>.envelope {
+  position: relative;
+  width: 500px;
+  height: 240px;
+}
+
+.envelope-wrapper>.envelope::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  z-index: 2;
+  border-top: 150px solid var(--envelope-tab);
+  border-right: 250px solid transparent;
+  border-left: 250px solid transparent;
+  transform-origin: top;
+  transition: all 0.5s ease-in-out 0.7s;
+}
+
+.envelope-wrapper>.envelope::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  width: 0px;
+  height: 0px;
+  border-top: 150px solid transparent;
+  border-right: 250px solid var(--envelope-cover);
+  border-bottom: 100px solid var(--envelope-cover);
+  border-left: 250px solid var(--envelope-cover);
+}
+
+.envelope>.letter {
+  position: absolute;
+  right: 20%;
+  bottom: 0;
+  width: 60%;
+  height: 98%;
+  background: var(--primary);
+  text-align: center;
+  transition: all 1s ease-in-out;
+  box-shadow: 0 0 5px var(--shadow-color);
+  padding: 15px 15px 50px 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Custom Scrollbar cho tờ giấy */
+.envelope>.letter::-webkit-scrollbar {
+  width: 3px;
+}
+
+.envelope>.letter::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.envelope>.letter::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.envelope>.letter>.text {
+  font-family: 'Comic Neue';
+  color: var(--txt-color);
+  text-align: left;
+  font-size: 12px;
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50px;
+  height: 50px;
+  z-index: 4;
+  transform: translate(-50%, -20%);
+  transition: transform 0.5s ease-in-out 1s, opacity 0.5s ease-in-out 1s;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart img {
+  border-radius: 50%;
+  border: 5px solid white;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
+}
+
+.flap>.envelope:before {
+  transform: rotateX(180deg);
+  z-index: 0;
+}
+
+.envelope>.flower {
+  position: absolute;
+  width: 150px;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  transition: all 1s ease-in-out 1s;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.envelope>.flower img {
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+}
+
+.flap>.envelope>.flower1 {
+  transform: translateX(-195%) translateY(-90%) rotate(-30deg) scale(1.5);
+  opacity: 1;
+}
+
+.flap>.envelope>.flower2 {
+  transform: translateX(95%) translateY(-90%) rotate(30deg) scale(1.5);
+  opacity: 1;
+}
+
+.flap>.envelope>.letter {
+  bottom: 140px;
+  transform: scale(1.5);
+  transition-delay: 1s;
+}
+
+.flap>.heart {
+  transform: translate(-50%, 80%) rotate(10deg);
+  opacity: 1;
+  transition-delay: 0.4s;
+}
+
+.love {
+  text-align: center;
+  font-weight: bold;
+}
+
+.photo-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.random-photo {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 8px solid white;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0) rotate(-10deg);
+  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: -1;
+}
+
+.random-photo.show {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
+}
+
+
+.gift-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 45px;
+  padding: 5px 10px;
+  background: linear-gradient(135deg, #ff6b6b, #ff8787);
+  border: 3px solid white;
+  border-radius: 15%;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+  z-index: 9999999;
+  /* Đảm bảo nằm trên cùng */
+}
+
+.gift-button.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+  animation: giftBounce 2s infinite;
+  /* Hiệu ứng nhấp nhô */
+}
+
+@keyframes giftBounce {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+  }
+}
+
+.gift-button:hover {
+  background: linear-gradient(135deg, #ff8787, #ff6b6b);
+  transform: scale(1.1) !important;
+}
+
+.gift-button:active {
+  transform: scale(0.9) !important;
+  /* Hiệu ứng khi nhấn vào */
+  transition: 0.1s;
+}
+
+.text {
+  position: relative;
+}
+
+.text::after {
+  content: '|';
+  display: inline-block;
+  animation: blink 0.7s infinite;
+  margin-left: 2px;
+  font-weight: bold;
+}
+
+.typing-done .text::after {
+  display: none;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Emoji animation styles */
+.emoji-float {
+  position: fixed;
+  font-size: 2rem;
+  pointer-events: none;
+  z-index: 1;
+  animation: floatUp 4s ease-out forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg) scale(0);
+    opacity: 1;
+  }
+
+  10% {
+    transform: translateY(-20px) translateX(var(--randomX)) rotate(20deg) scale(1);
+    opacity: 1;
+  }
+
+  90% {
+    transform: translateY(-120vh) translateX(var(--randomX)) rotate(360deg) scale(0.8);
+    opacity: 0.8;
+  }
+
+  100% {
+    transform: translateY(-120vh) translateX(var(--randomX)) rotate(360deg) scale(0);
+    opacity: 0;
+  }
+}
+
+/* RESPONSIVE STYLES */
+@media (max-width: 600px) {
+  .envelope-wrapper>.envelope {
+    width: 300px;
+    height: 160px;
+  }
+
+  .envelope-wrapper>.envelope::before {
+    border-top: 100px solid var(--envelope-tab);
+    border-right: 151px solid transparent;
+    border-left: 151px solid transparent;
+  }
+
+  .envelope-wrapper>.envelope::after {
+    border-top: 100px solid transparent;
+    border-right: 151px solid var(--envelope-cover);
+    border-bottom: 60px solid var(--envelope-cover);
+    border-left: 151px solid var(--envelope-cover);
+  }
+
+  .envelope>.letter {
+    width: 70%;
+    padding: 10px 10px 30px 10px;
+  }
+
+  .flap>.envelope>.letter {
+    bottom: 110px;
+    transform: scale(1.2);
+    left: 15%;
+  }
+
+  .envelope>.flower {
+    width: 80px;
+  }
+
+  .flap>.envelope>.flower1 {
+    transform: translateX(-200%) translateY(-100%) rotate(-30deg) scale(1.1);
+  }
+
+  .flap>.envelope>.flower2 {
+    transform: translateX(100%) translateY(-100%) rotate(30deg) scale(1.1);
+  }
+
+  .random-photo {
+    width: 90px;
+    height: 90px;
+    border-width: 3px;
+  }
+
+  .heart {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .envelope-wrapper>.envelope {
+    width: 260px;
+    height: 140px;
+  }
+
+  .envelope-wrapper>.envelope::before {
+    border-top-width: 80px;
+    border-right-width: 131px;
+    border-left-width: 131px;
+  }
+
+  .envelope-wrapper>.envelope::after {
+    border-top-width: 80px;
+    border-right-width: 131px;
+    border-bottom-width: 60px;
+    border-left-width: 131px;
+  }
+
+  .flap>.envelope>.letter {
+    transform: scale(1.1);
+    bottom: 80px;
+  }
+}
+
+#universe-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100000;
+  display: none;
+  background-color: #160016;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+}
+
+#universe-container.show {
+  display: block;
+  opacity: 1;
+}
+
+#universe-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+</style>
+<body style="font-family: 'Comic Neue'" class="relative">
+  <div id="photo-background" class="photo-background"></div>
+  <audio id="bg-music" src="./style/nhac.mp3" loop></audio>
+  <div class="background">
+    <div class="one">
+      <div class="container">
+        <div class="envelope-wrapper">
+          <div class="envelope">
+            <div class="flower flower1">
+              <img src="./style/img/flower (1).png" alt="" />
+            </div>
+            <div class="flower flower2">
+              <img src="./style/img/flower (2).png" alt="" />
+            </div>
+            <div class="letter">
+              <div id="text" class="text p-2"></div>
+              <button id="gift-button" class="gift-button">
+                🎁
+              </button>
+            </div>
+          </div>
+          <div class="heart">
+            <img src="./style/img/seal.jpg" alt="heart seal" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="universe-container"></div>
+
+  <script >
+
+    const envelope = document.querySelector('.envelope-wrapper');
+const heart = document.querySelector('.heart');
+const textContainer = document.getElementById('text');
+const photoBackground = document.getElementById('photo-background');
+const giftButton = document.getElementById('gift-button');
+
+const letterText = `<strong>Huệ ơiiii,</strong>
+<p style="text-indent: 15px; margin-top: 10px;">
+    Cảm ơn em vì đã đến bên anh và trở thành điều tuyệt vời nhất trong cuộc sống của anh. Sự dịu dàng, lòng tốt, sự mạnh mẽ và luôn quan tâm của em khiến anh cảm thấy may mắn và hạnh phúc hơn mỗi ngày. Cảm ơn em vì luôn ở bên anh, ủng hộ anh vô điều kiện, dù là những lúc vui vẻ hay những khi anh gặp khó khăn.
+</p>
+<p style="text-indent: 15px; margin-top: 10px;">
+    Có em trong cuộc đời, anh học được cách yêu thương, kiên nhẫn và trân trọng từng khoảnh khắc nhỏ bé. Em không chỉ là người anh yêu, mà còn là chỗ dựa, là nguồn động viên, là lý do để anh cố gắng trở thành người tốt hơn mỗi ngày.
+</p>
+<p style="text-indent: 15px; margin-top: 10px;">
+    Anh yêu em nhiều hơn những gì lời nói có thể diễn tả — không chỉ hôm nay, mà là mỗi ngày, và sẽ luôn như vậy mãi mãi.
+</p>
+<p class="love" style="text-align: center; font-weight: bold; margin-block: 15px;">Love You </p>`;
+
+let typingStarted = false;
+let waveInterval = null;
+
+function spawnWave() {
+    const oldPhotos = document.querySelectorAll('.random-photo');
+    oldPhotos.forEach(p => {
+        p.classList.remove('show');
+        setTimeout(() => p.remove(), 1200);
+    });
+
+    const isMobile = window.innerWidth <= 600;
+    const rows = isMobile ? 4 : 3;
+    const cols = isMobile ? 3 : 4;
+    const totalPhotos = 12;
+
+    let positions = [];
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+            positions.push({ row: r, col: c });
+        }
+    }
+    positions.sort(() => Math.random() - 0.5);
+
+    for (let i = 0; i < totalPhotos; i++) {
+        const img = document.createElement('img');
+        img.src = `./style/img/Anh (${(i % 12) + 1}).jpg`;
+        img.classList.add('random-photo');
+
+        const pos = positions[i];
+        const cellWidth = 100 / cols;
+        const cellHeight = 100 / rows;
+
+        const jitterX = (Math.random() - 0.5) * (cellWidth * 0.6);
+        const jitterY = (Math.random() - 0.5) * (cellHeight * 0.6);
+
+        const left = (pos.col * cellWidth) + (cellWidth / 2) + jitterX;
+        const top = (pos.row * cellHeight) + (cellHeight / 2) + jitterY;
+
+        const rotation = (Math.random() - 0.5) * 30;
+
+        img.style.left = `${left}%`;
+        img.style.top = `${top}%`;
+        img.style.setProperty('--rotation', `${rotation}deg`);
+        img.style.transitionDelay = `${Math.random() * 1}s`;
+
+        photoBackground.appendChild(img);
+
+        setTimeout(() => {
+            img.classList.add('show');
+        }, 100);
+    }
+}
+
+// Chỉ lắng nghe sự kiện click trên heart
+heart.addEventListener('click', () => {
+    envelope.classList.toggle('flap');
+    envelope.classList.toggle('open');
+
+    if (envelope.classList.contains('open')) {
+        const music = document.getElementById('bg-music');
+        if (music) {
+            music.play().catch(e => console.log("Audio play failed:", e));
+        }
+        spawnWave();
+        waveInterval = setInterval(spawnWave, 7000);
+
+        if (!typingStarted) {
+            typingStarted = true;
+            setTimeout(() => {
+                startTyping();
+            }, 2000);
+        }
+    } else {
+        clearInterval(waveInterval);
+        const existingPhotos = document.querySelectorAll('.random-photo');
+        existingPhotos.forEach(p => {
+            p.classList.remove('show');
+            setTimeout(() => p.remove(), 1200);
+        });
+    }
+});
+
+function startTyping() {
+    let i = 0;
+    textContainer.innerHTML = '';
+
+    function type() {
+        if (i < letterText.length) {
+            if (letterText.charAt(i) === '<') {
+                let tagEnd = letterText.indexOf('>', i);
+                if (tagEnd !== -1) {
+                    textContainer.innerHTML += letterText.substring(i, tagEnd + 1);
+                    i = tagEnd + 1;
+                }
+            } else {
+                textContainer.innerHTML += letterText.charAt(i);
+                i++;
+            }
+
+            const letter = document.querySelector('.letter');
+            letter.scrollTop = letter.scrollHeight;
+
+            setTimeout(type, 30);
+        } else {
+            document.body.classList.add('typing-done');
+            setTimeout(() => {
+                giftButton.classList.add('show');
+                const letter = document.querySelector('.letter');
+                letter.scrollTop = letter.scrollHeight;
+            }, 500);
+        }
+    }
+
+    type();
+}
+
+giftButton.addEventListener('click', () => {
+    if (typeof window.initUniverse === 'function') {
+        window.initUniverse();
+    }
+});
+
+
+  </script>
+  <script type="module" >
+
+
+import * as THREE from "https://esm.sh/three@0.136.0";
+import { OrbitControls } from "https://esm.sh/three@0.136.0/examples/jsm/controls/OrbitControls.js";
+
+let initialized = false;
+window.initUniverse = function () {
+    if (initialized) return;
+    initialized = true;
+
+    const container = document.getElementById("universe-container");
+    container.classList.add('show');
+    document.body.style.overflow = "hidden"; // Ngăn cuộn trang
+
+    // --- CÁC CÂU TIN NHẮN ---
+    const messages = [
+        "Anh Yêu Em",
+        "Yêu Huệ nhất trên đời",
+        "Mãi bên nhau nhé ❤️"
+    ];
+
+    function getTextPoints(text, count) {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = 1200;
+        canvas.height = 200;
+
+        ctx.fillStyle = "white";
+        ctx.font = "bold 80px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+
+        const textWidth = ctx.measureText(text).width;
+        const aspect = window.innerWidth / window.innerHeight;
+        const visibleWidthAtZ0 = 2 * Math.tan(Math.PI * 60 / 360) * 30 * aspect;
+        const maxWorldWidth = visibleWidthAtZ0 * 0.8;
+        const scale = Math.min(0.08, maxWorldWidth / textWidth);
+
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const points = [];
+
+        for (let y = 0; y < canvas.height; y += 2) {
+            for (let x = 0; x < canvas.width; x += 2) {
+                const alpha = data[(y * canvas.width + x) * 4 + 3];
+                if (alpha > 128) {
+                    points.push(new THREE.Vector3(
+                        (x - canvas.width / 2) * scale,
+                        (canvas.height / 2 - y) * scale,
+                        0
+                    ));
+                }
+            }
+        }
+
+        const result = new Float32Array(count * 3);
+        for (let i = 0; i < count; i++) {
+            const p = points[i % points.length];
+            result[i * 3] = p.x;
+            result[i * 3 + 1] = p.y;
+            result[i * 3 + 2] = p.z;
+        }
+        return result;
+    }
+
+    let scene = new THREE.Scene();
+    scene.background = new THREE.Color('#160016');
+    let camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 1000);
+    camera.position.set(0, 4, 30);
+
+    let renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    container.appendChild(renderer.domElement);
+
+    window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    let controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.enablePan = false;
+
+    let gu = {
+        time: { value: 0 },
+        textMix: { value: 0 },
+        finalMix: { value: 0 },
+        initialMix: { value: 0 } // Mix từ scatter sang text
+    }
+
+    const totalPoints = 150000;
+    const messagePoints = messages.map(msg => getTextPoints(msg, totalPoints));
+
+    let pts = [];
+    let sizes = [];
+    let shift = [];
+    let scatterPos = [];
+    let pushShift = () => {
+        shift.push(
+            Math.random() * Math.PI,
+            Math.random() * Math.PI * 2,
+            (Math.random() * 0.9 + 0.1) * Math.PI * 0.1,
+            Math.random() * 0.9 + 0.1
+        );
+    }
+
+    for (let i = 0; i < totalPoints; i++) {
+        let galaxyPos;
+        if (i < 50000) {
+            galaxyPos = new THREE.Vector3().randomDirection().multiplyScalar(Math.random() * 0.5 + 9.5);
+        } else {
+            let r = 10, R = 40;
+            let rand = Math.pow(Math.random(), 1.5);
+            let radius = Math.sqrt(R * R * rand + (1 - rand) * r * r);
+            galaxyPos = new THREE.Vector3().setFromCylindricalCoords(radius, Math.random() * 2 * Math.PI, (Math.random() - 0.5) * 2);
+        }
+        pts.push(galaxyPos);
+        sizes.push(Math.random() * 1.5 + 0.5);
+        pushShift();
+
+        // Tạo vị trí ngẫu nhiên khắp màn hình để tập trung lại
+        scatterPos.push(
+            (Math.random() - 0.5) * 80,
+            (Math.random() - 0.5) * 80,
+            (Math.random() - 0.5) * 80
+        );
+    }
+
+    let g = new THREE.BufferGeometry().setFromPoints(pts);
+    g.setAttribute("sizes", new THREE.Float32BufferAttribute(sizes, 1));
+    g.setAttribute("shift", new THREE.Float32BufferAttribute(shift, 4));
+    g.setAttribute("scatterPos", new THREE.Float32BufferAttribute(scatterPos, 3));
+
+    let startTextAttr = new THREE.Float32BufferAttribute(messagePoints[0], 3);
+    let endTextAttr = new THREE.Float32BufferAttribute(messagePoints[0], 3);
+    g.setAttribute("startText", startTextAttr);
+    g.setAttribute("endText", endTextAttr);
+
+    let m = new THREE.PointsMaterial({
+        size: 0.125,
+        transparent: true,
+        depthTest: false,
+        blending: THREE.AdditiveBlending,
+        onBeforeCompile: shader => {
+            shader.uniforms.time = gu.time;
+            shader.uniforms.textMix = gu.textMix;
+            shader.uniforms.finalMix = gu.finalMix;
+            shader.uniforms.initialMix = gu.initialMix;
+            shader.vertexShader = `
+                    uniform float time;
+                    uniform float textMix;
+                    uniform float finalMix;
+                    uniform float initialMix;
+                    attribute float sizes;
+                    attribute vec4 shift;
+                    attribute vec3 startText;
+                    attribute vec3 endText;
+                    attribute vec3 scatterPos;
+                    varying vec3 vColor;
+                    ${shader.vertexShader}
+                `.replace(
+                `gl_PointSize = size;`,
+                `gl_PointSize = size * sizes;`
+            ).replace(
+                `#include <color_vertex>`,
+                `#include <color_vertex>
+                    float d = length(abs(position) / vec3(40., 10., 40));
+                    d = clamp(d, 0., 1.);
+                    vColor = mix(vec3(42,40,154), vec3(209,124,196), d) / 255.;
+                `).replace(
+                    `#include <begin_vertex>`,
+                    `#include <begin_vertex>
+                    float t = time;
+                    float moveT = mod(shift.x + shift.z * t, PI2);
+                    float moveS = mod(shift.y + shift.z * t, PI2);
+                    
+                    // Mix giữa 2 câu text
+                    vec3 currentTextPos = mix(startText, endText, textMix);
+                    
+                    // Mix từ lúc tủa ra khắp nơi về text đầu tiên
+                    vec3 gatheredPos = mix(scatterPos, currentTextPos, initialMix);
+                    
+                    // Mix từ text sang galaxy
+                    vec3 finalPos = mix(gatheredPos, position, finalMix);
+                    
+                    vec3 noise = vec3(cos(moveS) * sin(moveT), cos(moveT), sin(moveS) * sin(moveT)) * shift.a;
+                    transformed = finalPos + noise * (finalMix + (1.0 - initialMix) * 0.5);
+                `);
+
+            shader.fragmentShader = `
+                varying vec3 vColor;
+                ${shader.fragmentShader}
+                `.replace(
+                `#include <clipping_planes_fragment>`,
+                `#include <clipping_planes_fragment>
+                    float d = length(gl_PointCoord.xy - 0.5);
+                    if (d > 0.5) discard;
+                `).replace(
+                    `vec4 diffuseColor = vec4( diffuse, opacity );`,
+                    `vec4 diffuseColor = vec4( vColor, smoothstep(0.5, 0.1, d) );`
+                );
+        }
+    });
+
+    let p = new THREE.Points(g, m);
+    p.rotation.order = "ZYX";
+    p.rotation.z = 0;
+    scene.add(p);
+
+    let clock = new THREE.Clock();
+    let messageIndex = 0;
+    let state = "GATHERING"; // Bắt đầu bằng việc tập trung hạt
+    let stateTime = 0;
+
+    renderer.setAnimationLoop(() => {
+        controls.update();
+        let dt = clock.getDelta();
+        let t = clock.getElapsedTime() * 0.5;
+        gu.time.value = t * Math.PI;
+        stateTime += dt;
+
+        if (state === "GATHERING") {
+            let progress = stateTime / 3.0; // Tập trung trong 3 giây
+            if (progress >= 1) {
+                progress = 1;
+                state = "DISPLAYING";
+                stateTime = 0;
+            }
+            gu.initialMix.value = progress;
+        } else if (state === "DISPLAYING") {
+            gu.initialMix.value = 1;
+            if (stateTime > 2.5) {
+                state = "SWITCHING";
+                stateTime = 0;
+                messageIndex++;
+
+                if (messageIndex < messages.length) {
+                    g.attributes.endText.array.set(messagePoints[messageIndex]);
+                    g.attributes.endText.needsUpdate = true;
+                } else {
+                    state = "GALAXY";
+                }
+            }
+        } else if (state === "SWITCHING") {
+            let progress = stateTime / 1.5;
+            if (progress >= 1) {
+                progress = 1;
+                gu.textMix.value = 0;
+                g.attributes.startText.array.set(messagePoints[messageIndex]);
+                g.attributes.startText.needsUpdate = true;
+                state = "DISPLAYING";
+                stateTime = 0;
+            } else {
+                gu.textMix.value = progress;
+            }
+        } else if (state === "GALAXY") {
+            let progress = stateTime / 5.0;
+            gu.finalMix.value = Math.min(1, progress);
+            p.rotation.y = t * 0.05 * gu.finalMix.value;
+            p.rotation.z = 0.2 * gu.finalMix.value;
+        }
+
+        renderer.render(scene, camera);
+    });
+}
+
+
+  </script>
+</body>
+
+</html>
