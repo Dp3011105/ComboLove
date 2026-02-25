@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>List quà của bé iu 🎀</title>
+    <!-- Font chữ dễ thương -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Fontawesome 6 (icon) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(145deg, #fce4e8 0%, #ffe9e9 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 16px 40px;
+            position: relative;
+        }
+
+        /* Sticker nền */
+        .floating-emoji {
+            position: absolute;
+            font-size: 28px;
+            color: rgba(255, 150, 180, 0.2);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .e1 { top: 2%; left: 3%; animation: float 7s infinite; }
+        .e2 { bottom: 5%; right: 2%; animation: float 9s reverse infinite; }
+        .e3 { top: 15%; right: 8%; font-size: 40px; animation: float 6s infinite; }
+        .e4 { bottom: 15%; left: 5%; animation: twinkle 4s infinite; }
+        .e5 { top: 25%; left: 15%; animation: float 8s infinite; }
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-25px) rotate(8deg); }
+            100% { transform: translateY(0) rotate(0); }
+        }
+        @keyframes twinkle {
+            0%,100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Header xinh */
+        .greeting {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(8px);
+            padding: 18px 30px;
+            border-radius: 80px;
+            box-shadow: 0 15px 30px rgba(249, 120, 150, 0.2);
+            margin-bottom: 40px;
+            border: 2px solid rgba(255,255,240,0.9);
+            text-align: center;
+            z-index: 5;
+        }
+        .greeting h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #c5476a;
+            letter-spacing: -0.3px;
+        }
+        .greeting h1 i {
+            color: #ff5a7c;
+            margin: 0 6px;
+        }
+        .greeting p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #a13558;
+            background: #fff0f3d0;
+            border-radius: 50px;
+            padding: 6px 16px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        /* Hai phần chính: sử dụng camera / không sử dụng camera */
+        .category {
+            width: 100%;
+            max-width: 1100px;
+            margin-bottom: 30px;
+            z-index: 5;
+        }
+        .category-title {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #9f3e5c;
+            background: rgba(255, 245, 245, 0.7);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 10px 32px;
+            border-radius: 40px 40px 12px 40px;
+            margin-bottom: 20px;
+            border: 2px solid white;
+            box-shadow: 0 8px 0 #fbb0c0;
+        }
+        .category-title i {
+            margin-right: 12px;
+            color: #fc6f8f;
+        }
+
+        /* Grid nút */
+        .grid-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 18px;
+            width: 100%;
+        }
+        /* Trên điện thoại nhỏ hơn */
+        @media (max-width: 500px) {
+            .grid-buttons {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .category-title {
+                font-size: 1.5rem;
+                padding: 8px 20px;
+            }
+        }
+
+        /* Nút chính */
+        .btn-item {
+            background: linear-gradient(145deg, #ffeef4, #ffe1ea);
+            border: 3px solid #ffffffd9;
+            border-radius: 30px 10px 30px 10px;
+            padding: 20px 8px;
+            box-shadow: 0 10px 0 #f9a8c0, 0 6px 15px rgba(250, 130, 160, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-align: center;
+            transition: 0.15s ease;
+            cursor: pointer;
+            width: 100%;
+            border: none;
+            font-family: inherit;
+            font-weight: 700;
+            color: #aa3f60;
+            font-size: 1rem;
+        }
+        .btn-item i:first-child {
+            font-size: 2.2rem;
+            color: #ee779b;
+            filter: drop-shadow(2px 4px 4px #fff);
+        }
+        .btn-item span {
+            line-height: 1.3;
+            font-weight: 700;
+        }
+        .btn-item small {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+        .btn-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 14px 0 #ff8bb0, 0 10px 25px #ff99bb;
+            background: linear-gradient(145deg, #fff5fb, #ffe8f2);
+        }
+
+        /* Modal - form hướng dẫn */
+        .modal-guide {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.2);
+            backdrop-filter: blur(5px);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 16px;
+        }
+        .modal-card {
+            background: #fff5f9;
+            max-width: 450px;
+            width: 100%;
+            border-radius: 50px 20px 50px 20px;
+            border: 4px solid white;
+            box-shadow: 0 30px 0 #faa6c0, 0 25px 40px rgba(200, 100, 130, 0.5);
+            padding: 28px 22px 32px;
+            position: relative;
+            animation: pop 0.3s;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .modal-card h3 {
+            font-size: 2rem;
+            color: #bd3f64;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .modal-card h3 i {
+            font-size: 2.2rem;
+            color: #fb6f97;
+        }
+        .guide-text {
+            background: #ffeef2;
+            padding: 18px;
+            border-radius: 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #872f4b;
+            margin: 18px 0;
+            border: 2px dashed #ffafc2;
+            line-height: 1.5;
+        }
+        .guide-text i {
+            color: #fb8da8;
+            margin-right: 5px;
+        }
+        .button-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        .modal-btn {
+            background: white;
+            border: none;
+            padding: 14px 22px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #b33b5e;
+            box-shadow: 0 5px 0 #eea6bc;
+            border: 2px solid #ffc1d4;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: 0.1s;
+            flex: 1 1 auto;
+            justify-content: center;
+        }
+        .modal-btn i {
+            font-size: 1.3rem;
+            color: #eb6d93;
+        }
+        .modal-btn.github-btn {
+            background: #363636;
+            color: white;
+            box-shadow: 0 5px 0 #1e1e1e;
+            border-color: #777;
+        }
+        .modal-btn.github-btn i {
+            color: #ffc4d9;
+        }
+        .modal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 7px 0 #f28aa8;
+        }
+        .close-modal {
+            position: absolute;
+            top: 18px;
+            right: 22px;
+            font-size: 2rem;
+            background: none;
+            border: none;
+            color: #d96b89;
+            cursor: pointer;
+            line-height: 1;
+        }
+        /* Footer nhỏ */
+        .foot-note {
+            margin-top: 30px;
+            font-size: 1.1rem;
+            background: #ffffffb3;
+            backdrop-filter: blur(3px);
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 600;
+            color: #ad3f60;
+            border: 1px solid white;
+            z-index: 5;
+        }
+        .foot-note i {
+            color: #ff5777;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- sticker nền -->
+    <div class="floating-emoji e1"><i class="fas fa-heart"></i></div>
+    <div class="floating-emoji e2"><i class="fas fa-star"></i></div>
+    <div class="floating-emoji e3"><i class="fas fa-crown"></i></div>
+    <div class="floating-emoji e4"><i class="fas fa-cat"></i></div>
+    <div class="floating-emoji e5"><i class="fas fa-gem"></i></div>
+
+    <!-- lời chào -->
+    <div class="greeting">
+        <h1>
+            <i class="fas fa-heart"></i> 
+            List quà tặng bé yêu 
+            <i class="fas fa-heart"></i>
+        </h1>
+        <p>🎀 Anh sắp vào lính nên sẽ cố găng làm nhiều web cho em nhất có thể , không biết 2 năm sau tụi mình thế nào nhể , web cập nhật 24//2/2026  🎀</p>
+    </div>
+
+    <!-- ========= PHẦN 1: SỬ DỤNG CAMERA ========= -->
+    <div class="category">
+        <div class="category-title">
+            <i class="fas fa-camera"></i> Web Sử dụng camera
+        </div>
+        <div class="grid-buttons" id="cameraGroup">
+
+            <!-- Các nút dùng camera (được gán data-link, data-guide, data-github) -->
+
+ <button class="btn-item" data-link="chistmas_Hue_coban/index.html" data-guide="🎄 Merry Christmas , chúc bé noel vui vẻ , bản 5 ảnh mà anh từ làm cho em lúc tụi mình mới nghĩ chỉ coi nhau là anh em nè haha." data-github="https://github.com/Dp3011105/webnoelban5anh.git">
+                <i class="fas fa-tree"></i>
+                <span>merry christmas 5 ảnh í</span>
+                <small>✨</small>
+            </button>
+            
+
+
+              <button class="btn-item" data-link="chistmas_Hue_pro/index.html" data-guide="🖐️ Giơ 2 ngón để hiển thị danh sách ảnh nha , 1 bàn tay qua trái phải để xoay vòng trong ,tay để ok để zoom ảnh ." data-github="https://github.com/Dp3011105/webnoelban20anhpro.git">
+                <i class="fas fa-gifts"></i>
+                <span>Merry Christmas meryxmas</span>
+                <small>📸 camera</small>
+            </button>
+
+
+            <button class="btn-item" data-link="chistmas_Hue/index.html" data-guide="🌲Bản này dùng trên máy tính í  em có thể tự thêm ảnh trong máy em , bấm nút ở bên phải trên cùng để thêm ảnh , bấm nút H trên bàn phím để ẩn camera  ! ✨" data-github="https://github.com/Dp3011105/ComboLove.git">
+                <i class="fas fa-snowflake"></i>
+                <span>merry christmas có sẵn ảnh em</span>
+                <small>✨</small>
+            </button>
+
+
+            <button class="btn-item" data-link="chistmas_Hue/christmas_tree_pro.html" data-guide="🌲Bản này dùng trên máy tính í  em có thể tự thêm ảnh trong máy em , bấm nút ở bên phải trên cùng để thêm ảnh , bấm nút H trên bàn phím để ẩn camera  ! ✨." data-github="https://github.com/Dp3011105/ComboLove.git">
+                <i class="fas fa-camera-retro"></i>
+                <span>Merry Christmas tự thêm 2</span>
+                <small>📸 camera</small>
+            </button>
+
+
+
+            <button class="btn-item" data-link="chistmas_Hue/christmas_tree2.html" data-guide="🌲Bản này dùng trên máy tính í  em có thể tự thêm ảnh trong máy em , bấm nút ở bên phải trên cùng để thêm ảnh , bấm nút H trên bàn phím để ẩn camera  ! ✨." data-github="https://github.com/Dp3011105/ComboLove.git">
+                <i class="fas fa-camera"></i>
+                <span>Merry Christmas tự thêm 3</span>
+                <small>📸 camera</small>
+            </button>
+
+            <button class="btn-item" data-link="chistmas_Hue/chistmas_tree3.html" data-guide="🌲Bản này dùng trên máy tính í  em có thể tự thêm ảnh trong máy em , bấm nút ở bên phải trên cùng để thêm ảnh , bấm nút H trên bàn phím để ẩn camera  ! ✨" data-github="https://github.com/Dp3011105/ComboLove.git">
+                <i class="fas fa-plus-circle"></i>
+                <span>Merry Christmas tự thêm 1</span>
+                <small>📸 camera</small>
+            </button>
+
+          
+
+            <button class="btn-item" data-link="2027/index.html" data-guide="Em dùng điện thoại hay máy tính đều được , dùng bàn tay để hiển thị số nhé , để 3 ngón tay lên camera thì sẽ hiển thị số 3 , còn giơ 2 nắm tay trên camera 1 lúc thì sẽ chuyển qua hình ." data-github="https://github.com/Dp3011105/webchucmungnammoi.git">
+                <i class="fas fa-hands"></i>
+                <span>Happy New Year 2027 iu Huệ</span>
+                <small>📸 camera</small>
+            </button>
+
+             <button class="btn-item" data-link="gift_universe_love_v2.vercel.app/index.html" data-guide="🌠 Vũ trụ thiên hà, em giơ bàn tay để hiển thị nha , để tay ok để zoom ảnh  ." data-github="https://github.com/Dp3011105/Vutruanhcamera.git">
+                <i class="fas fa-meteor"></i>
+                <span>Vũ Trụ</span>
+                <small>✨</small>
+            </button>
+
+        </div>
+    </div>
+
+    <!-- ========= PHẦN 2: KHÔNG SỬ DỤNG CAMERA ========= -->
+    <div class="category">
+        <div class="category-title">
+            <i class="fas fa-image"></i> Không sử dụng camera
+        </div>
+        <div class="grid-buttons" id="noCameraGroup">
+            <!-- Các nút không dùng camera -->
+               <button class="btn-item" data-link="valentine-special-love.netlify.app/index.html" data-guide="👑valentine vui vẻ nha bé iu của tui ." data-github="https://github.com/Dp3011105/valentineweb5anhhinhcau.git">
+                <i class="fas fa-crown"></i>
+                <span>Valentine Bé ơii</span>
+                <small>✨</small>
+            </button>
+
+
+              <button class="btn-item" data-link="lovechristmas.netlify.app/index.html" data-guide="Noel vui vẻ nha bé iu của tui ." data-github="https://github.com/Dp3011105/treenoel3dhaveimg.git">
+                <i class="fas fa-crown"></i>
+                <span>Cây thông noel</span>
+                <small>✨</small>
+            </button>
+
+
+              <button class="btn-item" data-link="webhappybirthday/index.html" data-guide="👑 Happy Birthday , web này thú vị cực mong là bé thích hihi." data-github="https://github.com/Dp3011105/ComboLove.git">
+                <i class="fas fa-crown"></i>
+                <span>happy birthday Huệ iu nhó </span>
+                <small>✨</small>
+            </button>
+
+
+            <button class="btn-item" data-link="chu3d/index.html" data-guide="🌸1 chút hiệu ứng chữ rơi í , chúc bé sinh nhật vui vẻ ." data-github="https://github.com/Dp3011105/chu3dtutrenxuong.git">
+                <i class="fas fa-feather"></i>
+                <span>Sinh nhật bé iu</span>
+                <small>✨ không cam</small>
+            </button>
+
+
+            <button class="btn-item" data-link="happybirthday/index.html" data-guide="🎂 Happy birthday bản này anh làm đơn giản xíu mong em thích ." data-github="https://github.com/Dp3011105/Chucsinhnhatbananhlentroi.git">
+                <i class="fas fa-cake-candles"></i>
+                <span>happy birthday bé iu</span>
+                <small>✨</small>
+            </button>
+
+            <button class="btn-item" data-link="happybirthdaydeargift_vercel_app/index.html" data-guide="🎁 Sinh nhật vui vẻ , LƯU Ý : NHỚ QUAY NGANG MÀN HÌNH ĐIỆN THOẠI NHA , không thì dùng máy tính í ,  cái này khá là đặc biệt í đẹp cũng cũng thoii." data-github="https://github.com/Dp3011105/webhappybirthday_Pro7img.git">
+                <i class="fas fa-crown"></i>
+                <span>happy birthday Huệ iu</span>
+                <small>✨</small>
+            </button>
+
+            <button class="btn-item" data-link="Th-Valentine/index.html" data-guide="💌 Valentine vui vẻ , web này là web đẹp nhất anh thấy á bấm vô đi ." data-github="https://github.com/Dp3011105/Th-Valentine.git">
+                <i class="fas fa-heart"></i>
+                <span>Valentine</span>
+                <small>✨</small>
+            </button>
+
+
+            <button class="btn-item" data-link="Th-Valentinepro/index.html" data-guide="💎Valentine vui vẻ ,  anh tâm huyết cái này cực ,  hơi đau lưng hihi." data-github="https://github.com/Dp3011105/Chuc14-2pro_vutru.git">
+                <i class="fas fa-gem"></i>
+                <span>Valentine iu Huệ </span>
+                <small>✨</small>
+            </button>
+           
+            <button class="btn-item" data-link="webKyNiem/index.html" data-guide="📸 List ảnh kỷ niệm, mật khẩu mở khoá là 0000. khi hiển thị các hình ảnh xếp hình trái tim , nhớ lăn chuột xuống dưới để click tin nhắn nha ." data-github="https://github.com/Dp3011105/webKyNiem.git">
+                <i class="fas fa-images"></i>
+                <span>list ảnh</span>
+                <small>✨</small>
+            </button>
+            <button class="btn-item" data-link="webvutru/index.html" data-guide="🌠 Vũ trụ thiên hà, bấm vô quả cầu có bất ngờ nha ." data-github="https://github.com/Dp3011105/webvutrusieudep.git">
+                <i class="fas fa-meteor"></i>
+                <span>Vũ Trụ</span>
+                <small>✨</small>
+            </button>
+           
+        </div>
+    </div>
+
+    <!-- Modal hướng dẫn chung -->
+    <div id="guideModal" class="modal-guide">
+        <div class="modal-card">
+            <button class="close-modal" id="closeModalBtn">&times;</button>
+            <h3>
+                <i class="fas fa-star" id="modalIcon"></i> 
+                <span id="modalTitle">Hướng dẫn</span>
+            </h3>
+            <div class="guide-text" id="modalGuide">
+                Nội dung hướng dẫn sẽ hiện ra ở đây.
+            </div>
+            <div class="button-group">
+                <button class="modal-btn github-btn" id="githubBtn"><i class="fab fa-github"></i> Mã nguồn</button>
+                <button class="modal-btn" id="accessBtn"><i class="fas fa-arrow-up-right-from-square"></i> Truy cập</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer nhẹ nhàng -->
+    <div class="foot-note">
+        <i class="fas-regular fa-heart"></i>
+Hẹ hẹ 
+        <i class="fas-regular fa-heart"></i>
+    </div>
+
+    <script>
+        (function() {
+            // Lấy các nút và modal
+            const cameraButtons = document.querySelectorAll('#cameraGroup .btn-item');
+            const noCameraButtons = document.querySelectorAll('#noCameraGroup .btn-item');
+            const allButtons = [...cameraButtons, ...noCameraButtons];
+            
+            const modal = document.getElementById('guideModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalGuide = document.getElementById('modalGuide');
+            const modalIcon = document.getElementById('modalIcon');
+            const githubBtn = document.getElementById('githubBtn');
+            const accessBtn = document.getElementById('accessBtn');
+            const closeBtn = document.getElementById('closeModalBtn');
+
+            // Biến lưu link hiện tại
+            let currentLink = '';
+            let currentGithub = '';
+
+            // Hàm mở modal với dữ liệu
+            function openModal(button) {
+                // Lấy dữ liệu từ data attributes
+                const link = button.getAttribute('data-link') || '#';
+                const guide = button.getAttribute('data-guide') || 'Chưa có hướng dẫn cụ thể, nhưng chắc chắn là dễ thương!';
+                const github = button.getAttribute('data-github') || 'https://github.com/';
+                // Lấy tên nút từ nội dung (lấy chữ span đầu tiên)
+                const titleSpan = button.querySelector('span')?.innerText || 'Món quà';
+                
+                // Gán vào modal
+                modalTitle.innerText = titleSpan;
+                modalGuide.innerHTML = `<i class="fas fa-lightbulb"></i> ${guide}`;
+                currentLink = link;
+                currentGithub = github;
+
+                // Set icon tùy theo nhóm (chỉ để trang trí)
+                if (button.closest('#cameraGroup')) {
+                    modalIcon.className = 'fas fa-camera';
+                } else {
+                    modalIcon.className = 'fas fa-heart';
+                }
+
+                // Hiển thị modal
+                modal.style.display = 'flex';
+            }
+
+            // Gắn sự kiện cho tất cả nút
+            allButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault(); // không cho nút button submit hay gì
+                    openModal(this);
+                });
+            });
+
+            // Nút đóng modal
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+
+            // Click ngoài modal để đóng (vào nền)
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+
+            // Nút "Mã nguồn" (github)
+            githubBtn.addEventListener('click', function() {
+                if (currentGithub) {
+                    window.open(currentGithub, '_blank'); // tab mới
+                } else {
+                    alert('Chưa có link github');
+                }
+            });
+
+            // Nút "Truy cập" (đích đến)
+            accessBtn.addEventListener('click', function() {
+                if (currentLink) {
+                    window.open(currentLink, '_blank'); // tab mới
+                } else {
+                    alert('Chưa có đường dẫn');
+                }
+                // không đóng modal, để em có thể mở nhiều lần
+            });
+
+            // Đảm bảo responsive: modal scale tốt, không cần thêm
+        })();
+    </script>
+</body>
+</html>
